@@ -2,9 +2,12 @@
 
 namespace Inspector;
 
-use Inspector\Issue\IssueInterface;
+use Inspector\Inspection\InspectionInterface;
 
 interface InspectorInterface
 {
-    public function addIssue(IssueInterface $issue);
+    public function getInspections();
+    public function addInspection(InspectionInterface $inspection);
+    public function runInspection(InspectionInterface $inspection);
+    public function run();
 }

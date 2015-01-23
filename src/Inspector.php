@@ -2,9 +2,11 @@
 
 namespace Inspector;
 
+use Inspector\Inspection\InspectionInterface;
+
 use ReflectionClass;
 
-class Inspector
+class Inspector implements InspectorInterface
 {
     private $inspections = array();
     private $container;
@@ -14,7 +16,7 @@ class Inspector
         $this->container = $container;
     }
     
-    public function addInspection($inspection)
+    public function addInspection(InspectionInterface $inspection)
     {
         $this->inspections[] = $inspection;
     }
@@ -23,7 +25,7 @@ class Inspector
         return $this->inspections;
     }
     
-    public function runInspection($inspection)
+    public function runInspection(InspectionInterface $inspection)
     {
         $className = $inspection->getClassName();
         $methodName = $inspection->getMethodName();

@@ -2,11 +2,11 @@
 
 namespace Inspector\Formatter;
 
-use Inspector\Inspector;
+use Inspector\InspectorInterface;
 
 class ConsoleFormatter
 {
-    public function format(Inspector $inspector)
+    public function format(InspectorInterface $inspector)
     {
         $o = '';
         foreach ($inspector->getInspections() as $inspection) {

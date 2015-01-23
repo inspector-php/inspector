@@ -2,7 +2,9 @@
 
 namespace Inspector\Inspection;
 
-class Inspection
+use Inspector\Issue\IssueInterface;
+
+class Inspection implements InspectionInterface
 {
     private $className;
     private $methodName;
@@ -24,7 +26,7 @@ class Inspection
         return $this->methodName;
     }
     
-    public function addIssue($issue)
+    public function addIssue(IssueInterface $issue)
     {
         $this->issues[] = $issue;
     }
