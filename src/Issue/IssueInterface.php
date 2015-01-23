@@ -1,6 +1,6 @@
 <?php
 
-namespace LinkORB\Component\Checker;
+namespace Inspector\Issue;
 
 interface IssueInterface
 {

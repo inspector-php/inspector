@@ -29,8 +29,6 @@ class YamlLoader
         if (isset($data['classes'])) {
             foreach ($data['classes'] as $className)
             {
-                $x = new \Example\Inspection\OsInspection();
-                
                 $reflector = new ReflectionClass($className);
                 $method = $reflector->getConstructor();
                 
