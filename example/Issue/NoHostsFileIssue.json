@@ -1,0 +1,5 @@
+{
+    "subject": "Hosts file not found",
+    "description": "The file does not exist, and is required",
+    "solution": "Please create a valid /etc/hosts file"
+}

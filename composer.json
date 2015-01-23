@@ -1,0 +1,29 @@
+
+{
+    "name": "linkorb/inspector",
+    "description": "Inspect the your app's data, config and user input for issues",
+    "keywords": ["inspector", "inspect", "sanity check", "issue"],
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Joost Faassen",
+            "email": "j.faassen@linkorb.com",
+            "homepage": "http://www.linkorb.com",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/linkorb/inspector/issues"
+    },
+    "require-dev": {
+        "symfony/console": "~2.4",
+        "symfony/yaml": "~2.4"
+    },
+    "bin": ["bin/inspector"],
+    "autoload": {
+        "psr-4": {
+            "Inspector\\": "src/"
+        }
+    }
+}
