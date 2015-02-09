@@ -5,7 +5,7 @@ namespace Inspector\Issue;
 use ReflectionClass;
 use RuntimeException;
 
-abstract class BaseIssue
+abstract class BaseIssue implements IssueInterface
 {
     protected $subject = "Undefined subject";
     protected $message;
@@ -75,4 +75,6 @@ abstract class BaseIssue
         }
         return false;
     }
+
+    abstract function getLinks();
 }
