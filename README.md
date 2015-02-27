@@ -13,6 +13,17 @@ The framework lets you write 'Inspections' for any type of data, and raise 'Issu
 
 The issues contain (translatable) user-level error messages, proposed solutions, and hyperlinks to fix the issue.
 
+## Installation
+It is recommended to use composer to install Inspector:
+```
+composer require inspector/inspector "~1.0"
+```
+Alternatively you can add the following to the require section in your composer.json manually:
+```
+"inspector/inspector": "~1.0"
+```
+Run composer update afterwards.
+
 ## How to use Inspector
 
 ### Create an Inspection class
