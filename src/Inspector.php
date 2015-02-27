@@ -40,6 +40,9 @@ class Inspector implements InspectorInterface
                 if ($p->getName() == 'db') {
                     $arguments[] = $this->container['db'];
                 }
+                if ($p->getName() == 'pdo') {
+                    $arguments[] = $this->container['pdo'];
+                }
             }
         }
         $instance = $reflector->newInstanceArgs($arguments);
