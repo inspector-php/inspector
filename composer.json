@@ -1,6 +1,6 @@
 
 {
-    "name": "linkorb/inspector",
+    "name": "inspector/inspector",
     "description": "Inspect the your app's data, config and user input for issues",
     "keywords": ["inspector", "inspect", "sanity check", "issue"],
     "license": "MIT",
@@ -11,10 +11,16 @@
             "email": "j.faassen@linkorb.com",
             "homepage": "http://www.linkorb.com",
             "role": "Developer"
+        },
+        {
+            "name": "Hongliang Wang",
+            "email": "h.wang@linkorb.com",
+            "homepage": "http://www.linkorb.com",
+            "role": "Developer"
         }
     ],
     "support": {
-        "issues": "https://github.com/linkorb/inspector/issues"
+        "issues": "https://github.com/inspector-php/inspector/issues"
     },
     "require-dev": {
         "symfony/console": "~2.4",
