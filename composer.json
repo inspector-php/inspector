@@ -2,7 +2,7 @@
 {
     "name": "inspector/inspector",
     "description": "Inspect the your app's data, config and user input for issues",
-    "keywords": ["inspector", "inspect", "sanity check", "issue"],
+    "keywords": ["inspector", "inspect", "sanity check", "issue", "data integrity"],
     "license": "MIT",
     "type": "library",
     "authors": [
