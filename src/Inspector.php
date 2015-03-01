@@ -5,6 +5,7 @@ namespace Inspector;
 use Inspector\Inspection\InspectionInterface;
 
 use ReflectionClass;
+use RuntimeException;
 
 class Inspector implements InspectorInterface
 {
@@ -37,12 +38,10 @@ class Inspector implements InspectorInterface
         // Inject requested constructor arguments
         if ($method) {
             foreach ($method->getParameters() as $p) {
-                if ($p->getName() == 'db') {
-                    $arguments[] = $this->container['db'];
+                if (!isset($this->container[$p->getName()])) {
+                    throw new RuntimeException("Requested parameter not defined in container: " . $p->getName());
                 }
-                if ($p->getName() == 'pdo') {
-                    $arguments[] = $this->container['pdo'];
-                }
+                $arguments[] = $this->container[$p->getName()];
             }
         }
         $instance = $reflector->newInstanceArgs($arguments);
