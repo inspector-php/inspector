@@ -11,6 +11,7 @@ class OsInspection
     {
         return true;
     }
+    
     public function inspectHostsFile(InspectionInterface $inspection)
     {
         if (!file_exists('/etc/hosts')) {
