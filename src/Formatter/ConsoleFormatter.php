@@ -14,6 +14,11 @@ class ConsoleFormatter
                 $o .= " <error>✘ " . $inspection->getShortName() . "</error>\n";
                 foreach ($inspection->getIssues() as $issue) {
                     $o .= "  - <comment>" . $issue->getSubject() . "</comment>\n";
+                    $o .= "       <comment>Details:</comment> " . $issue->getDescription() . "\n";
+                    $o .= "       <comment>Solution:</comment> " . $issue->getSolution() . "\n";
+                    foreach ($issue->getLinks() as $link) {
+                        $o .= "       <comment>Link:</comment> [" . $link->getLabel() . "](" . $link->getUrl() . ")\n";
+                    }
                 }
             } else {
                 $o .= " <info>✓ " . $inspection->getShortName() . "</info>\n";
