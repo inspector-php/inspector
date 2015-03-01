@@ -147,6 +147,21 @@ vendor/bin/inspector inspector:run path/to/my/suite.yml
 
 This runs the inspection suite, and outputs the results to the console.
 
+### Running inspections on SQL databases
+
+If your inspections need an SQL database connection, you can use the `--pdoconfig=/path/to/config.ini` option.
+The ini file should contain the `server`, `name`, `username` and `password` for your database.
+You can define which `driver` to use, which will default to `mysql` if omitted.
+
+For example:
+
+```mydatabase.ini
+name=mydatabase
+server=localhost
+username=joe
+password=secret
+driver=pgsql
+```
 
 ## License
 
