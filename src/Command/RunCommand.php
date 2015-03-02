@@ -94,17 +94,7 @@ class RunCommand extends Command
     
     private function getPdoFromConfig($config)
     {
-        if (!isset($config['server'])) {
-            throw new RuntimeException("server not defined in config");
-        }
-        
-        if (!isset($config['name'])) {
-            throw new RuntimeException("name of the database not defined in config");
-        }
-        
-        if (!isset($config['username']) || !isset($config['password'])) {
-            throw new RuntimeException("username and/or password not defined in config");
-        }
+        $this->testPdoConfigParameters($config);
         
         $driver = 'mysql';
         if (isset($config['driver'])) {
@@ -117,5 +107,20 @@ class RunCommand extends Command
             throw new RuntimeException("Database connection failed: " . $e->getMessage());
         }
         return $pdo;
+    }
+
+    private function testPdoConfigParameters($config)
+    {
+        if (!isset($config['server'])) {
+            throw new RuntimeException("server not defined in config");
+        }
+        
+        if (!isset($config['name'])) {
+            throw new RuntimeException("name of the database not defined in config");
+        }
+        
+        if (!isset($config['username']) || !isset($config['password'])) {
+            throw new RuntimeException("username and/or password not defined in config");
+        }
     }
 }

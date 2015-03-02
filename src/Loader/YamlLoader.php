@@ -28,15 +28,18 @@ class YamlLoader
         if (isset($data['classes'])) {
             foreach ($data['classes'] as $className) {
                 $reflector = new ReflectionClass($className);
-                $method = $reflector->getConstructor();
-                
-                foreach ($reflector->getMethods() as $method) {
-                    $methodName = $method->getName();
-                    if (substr($methodName, 0, 7) == 'inspect') {
-                        $inspection = new Inspection($className, $methodName);
-                        $inspector->addInspection($inspection);
-                    }
-                }
+                $this->addInspection($inspector, $reflector->getMethods(), $className);
+            }
+        }
+    }
+
+    private function addInspection(Inspector $inspector, $methods, $className)
+    {
+        foreach ($methods as $method) {
+            $methodName = $method->name;
+            if (substr($methodName, 0, 7) == 'inspect') {
+                $inspection = new Inspection($className, $methodName);
+                $inspector->addInspection($inspection);
             }
         }
     }
