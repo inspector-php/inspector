@@ -10,6 +10,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Inspector\Inspector;
 use Inspector\Output as InspectionOutput;
 use Inspector\Loader\YamlLoader;
+use Inspector\Loader\SingleInspectorLoader;
 use Inspector\Formatter\ConsoleFormatter;
 use PDO;
 use PDOException;
@@ -52,14 +53,34 @@ class RunCommand extends Command
         
         $inspector = new Inspector($container);
         
-        $loader = new YamlLoader();
-        $loader->load($inspector, $filename);
+        $this->load($inspector, $filename);
         
         $inspector->run();
         
         $formatter = new ConsoleFormatter();
         $formatter->setOutput($output);
         $output->write($formatter->format($inspector));
+    }
+
+    private function load(Inspector $inspector, $filename)
+    {
+        if (file_exists($filename)) {
+            $this->loadYaml($inspector, $filename);
+        } else {
+            $this->loadSingleInspector($inspector, $filename);
+        }
+    }
+
+    private function loadYaml(Inspector $inspector, $filename)
+    {
+        $loader = new YamlLoader();
+        $loader->load($inspector, $filename);
+    }
+
+    private function loadSingleInspector(Inspector $inspector, $inspectorName)
+    {
+        $loader = new SingleInspectorLoader();
+        $loader->load($inspector, $inspectorName);
     }
     
     private function getPdoFromConfigFile($filename)

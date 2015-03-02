@@ -19,16 +19,14 @@ class YamlLoader
         $data = $yamlparser->parse(file_get_contents($filename));
 
         if (isset($data['include'])) {
-            foreach ($data['include'] as $includeName)
-            {
+            foreach ($data['include'] as $includeName) {
                 $path = dirname($filename);
                 $this->load($inspector, $path . '/' . $includeName);
             }
         }
         
         if (isset($data['classes'])) {
-            foreach ($data['classes'] as $className)
-            {
+            foreach ($data['classes'] as $className) {
                 $reflector = new ReflectionClass($className);
                 $method = $reflector->getConstructor();
                 
