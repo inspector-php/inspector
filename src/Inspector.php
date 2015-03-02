@@ -33,8 +33,17 @@ class Inspector implements InspectorInterface
         
         $reflector = new ReflectionClass($className);
         $method = $reflector->getConstructor();
-        $arguments = array();
         
+        $instance = $reflector->newInstanceArgs($this->getInspectionArguments($method));
+        
+        foreach ($reflector->getMethods() as $method) {
+            $this->runInspectionInspect($method, $methodName);
+        }
+    }
+
+    private function getInspectionArguments($method)
+    {
+        $arguments = array();
         // Inject requested constructor arguments
         if ($method) {
             foreach ($method->getParameters() as $p) {
@@ -44,13 +53,15 @@ class Inspector implements InspectorInterface
                 $arguments[] = $this->container[$p->getName()];
             }
         }
-        $instance = $reflector->newInstanceArgs($arguments);
-        
-        foreach ($reflector->getMethods() as $method) {
-            if ($method->getName()==$methodName) {
-                if ($method->isPublic()) {
-                    $instance->$methodName($inspection);
-                }
+        return $arguments;
+    }
+
+    private function runInspectionInspect($method, $methodName)
+    {
+        // if ($method->getName()==$methodName) {
+        if ($method->name == $methodName) {
+            if ($method->isPublic()) {
+                $instance->$methodName($inspection);
             }
         }
     }
