@@ -37,7 +37,7 @@ class Inspector implements InspectorInterface
         $instance = $reflector->newInstanceArgs($this->getInspectionArguments($method));
         
         foreach ($reflector->getMethods() as $method) {
-            $this->runInspectionInspect($method, $methodName);
+            $this->runInspectionInspect($inspection, $instance, $method, $methodName);
         }
     }
 
@@ -56,7 +56,7 @@ class Inspector implements InspectorInterface
         return $arguments;
     }
 
-    private function runInspectionInspect($method, $methodName)
+    private function runInspectionInspect($inspection, $instance, $method, $methodName)
     {
         // if ($method->getName()==$methodName) {
         if ($method->name == $methodName) {
