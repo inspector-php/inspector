@@ -3,10 +3,11 @@
 namespace Inspector\Formatter;
 
 use Inspector\InspectorInterface;
+use Symfony\Component\Console\Output\OutputInterface;
 
 class ConsoleFormatter
 {
-    private $verboseLevel = 0;
+    private $output = OutputInterface::VERBOSITY_NORMAL;
 
     public function format(InspectorInterface $inspector)
     {
@@ -45,7 +46,7 @@ class ConsoleFormatter
     private function getDetails($inspection)
     {
         $o = '';
-        if ($this->verboseLevel > 0) {
+        if ($this->output->isVerbose()) {
             foreach ($inspection->getIssues() as $issue) {
                 $o .= "  - <comment>" . $issue->getSubject() . "</comment>\n";
                 $o .= "       <comment>Details:</comment> " . $issue->getDescription() . "\n";
@@ -58,7 +59,7 @@ class ConsoleFormatter
     private function getSolution($issue)
     {
         $o = '';
-        if ($this->verboseLevel > 1) {
+        if ($this->output->isVeryVerbose()) {
             $o .= "       <comment>Solution:</comment> " . $issue->getSolution() . "\n";
             foreach ($issue->getLinks() as $link) {
                 $o .= "       <comment>Link:</comment> [" . $link->getLabel() . "](" . $link->getUrl() . ")\n";
@@ -67,9 +68,9 @@ class ConsoleFormatter
         return $o;
     }
 
-    public function setVerboseLevel($level)
+    public function setOutput(OutputInterface $output)
     {
-        $this->verboseLevel = (int)$level;
+        $this->output = $output;
         return $this;
     }
 }

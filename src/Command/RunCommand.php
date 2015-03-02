@@ -32,12 +32,6 @@ class RunCommand extends Command
                 null,
                 InputOption::VALUE_REQUIRED,
                 'Path to a .ini file containing pdo connection configuration'
-            )
-            ->addOption(
-                'verbose',
-                null,
-                InputOption::VALUE_REQUIRED,
-                'The verbose level - 0: only summary; 1: plus details; 2: plus solution.'
             );
     }
 
@@ -45,7 +39,6 @@ class RunCommand extends Command
     {
         $filename  = $input->getArgument('filename');
         $pdoconfigfilename = $input->getOption('pdoconfig');
-        $verbose = $input->getOption('verbose');
         
         $container = array();
         
@@ -65,7 +58,7 @@ class RunCommand extends Command
         $inspector->run();
         
         $formatter = new ConsoleFormatter();
-        $formatter->setVerboseLevel($verbose);
+        $formatter->setOutput($output);
         $output->write($formatter->format($inspector));
     }
     
