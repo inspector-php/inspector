@@ -1,3 +1,4 @@
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/inspector-php/inspector/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/inspector-php/inspector/?branch=master)
 # Inspector
 
 Inspect your app's data, config and user input for issues.
