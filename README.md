@@ -145,6 +145,14 @@ A console command is included, you can run it like this:
 ```bash
 vendor/bin/inspector inspector:run path/to/my/suite.yml
 ```
+It is possible to add more verbose output. Simply add -v or -vv
+```bash
+vendor/bin/inspector inspector:run path/to/my/suite.yml -vv
+```
+It is also possible to run a single inspection:
+```bash
+vendor/bin/inspector inspector:run My\\Inspection\\Class
+```
 
 This runs the inspection suite, and outputs the results to the console.
 
